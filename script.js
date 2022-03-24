@@ -5,22 +5,46 @@ let colorSelected;
 
 // Add a row
 function addR() {
-    alert("Clicked Add Row"); // Replace this line with your code.
+    let table = document.getElementById("grid").insertRow();
+    let rowLen = document.getElementById("grid");
+    let colLen = rowLen.rows[0].cells.length;
+    let rows = table.rows;
+    table.innerHTML = "<td></td>"
 }
 
 // Add a column
 function addC() {
-    alert("Clicked Add Col"); // Replace this line with your code.
+    let table = document.getElementById("grid");
+    let rows = table.rows;
+
+    if (table.rows.length == 0) {
+        let row = table.insertRow(numRows);
+    }
+
+    for (i = 0; i < table.rows.length; i++) {
+        let td = document.createElement("td");
+        td.innerText = "";
+        rows[i].appendChild(td);
+    }
 }
 
 // Remove a row
 function removeR() {
-    alert("Clicked Remove Row"); // Replace this line with your code.
+    let table = document.getElementById("grid");
+    
+    if (table.rows.length >= 1) { 
+        table.deleteRow(numRows);
+    }
 }
 
 // Remove a column
 function removeC() {
-    alert("Clicked Remove Col"); // Replace this line with your code.
+    let table = document.getElementById("grid");
+    let rows = table.rows;
+
+    for (i = 0; i < table.rows.length; i++) {
+        rows[i].deleteCell(-1);
+    }
 }
 
 // Set global variable for selected color
@@ -31,7 +55,12 @@ function selectColor(){
 
 // Fill all uncolored cells
 function fillU(){
-    alert("Clicked Fill All Uncolored"); // Replace this line with your code.
+    let table = document.getElementById("grid");
+    let rows = table.rows;
+    
+    let colLen = table.rows[0].cells.length;
+
+    console.log(colLen);
 }
 
 // Fill all cells
