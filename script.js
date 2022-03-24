@@ -5,11 +5,24 @@ let colorSelected;
 
 // Add a row
 function addR() {
-    let table = document.getElementById("grid").insertRow();
-    let rowLen = document.getElementById("grid");
-    let colLen = rowLen.rows[0].cells.length;
-    let rows = table.rows;
-    table.innerHTML = "<td></td>"
+    let table = document.getElementById('grid');
+
+    if (table.rows.length == 0) {
+        let rowLen = document.getElementById("grid");
+        let rows = table.rows;
+        table.innerHTML = "<td></td>"
+    }
+    else {
+        let row = table.insertRow(table.rows.length);
+
+        for (let i = 0; i < table.rows[0].cells.length; i++) {
+            let cell = row.insertCell(i);
+            let div = document.createElement('div');
+            let txt = document.createTextNode('');
+            div.appendChild(txt);
+            cell.appendChild(div);
+        }
+    }
 }
 
 // Add a column
@@ -33,7 +46,7 @@ function removeR() {
     let table = document.getElementById("grid");
     
     if (table.rows.length >= 1) { 
-        table.deleteRow(numRows);
+        table.deleteRow(-1);
     }
 }
 
